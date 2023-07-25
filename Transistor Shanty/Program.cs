@@ -166,19 +166,55 @@ app.MapGet("/types", () =>
 });
 app.MapGet("/brands", () =>
 {
-    StringBuilder result = new StringBuilder("Here are the List of Laptops and their model: ");
-    foreach (LaptopBrand brand in TransistorShanty.Brands)
+    LaptopBrand dell = TransistorShanty.Brands.First(b => b.BrandName == "Dell");
+    HashSet<Laptop> dellLaptop = new HashSet<Laptop>();
+    foreach (Laptop laptop in TransistorShanty.Laptops)
     {
-        result.Append($"{brand.BrandName}: ");
-        foreach (Laptop laptop in TransistorShanty.Laptops)
+        if (laptop.LaptopBrand.BrandName == dell.BrandName)
         {
-            if (laptop.LaptopBrand.BrandName == brand.BrandName)
-            {
-                result.Append($"{laptop.Model}, ");
-            }
+            dellLaptop.Add(laptop);
         }
     }
-    return Results.Ok(result.ToString());
+    LaptopBrand alienware = TransistorShanty.Brands.First(b => b.BrandName == "Alienware");
+    HashSet<Laptop> alienwareLaptop = new HashSet<Laptop>();
+    foreach (Laptop laptop in TransistorShanty.Laptops)
+    {
+        if (laptop.LaptopBrand.BrandName == alienware.BrandName)
+        {
+            alienwareLaptop.Add(laptop);
+        }
+    }
+    LaptopBrand asusRog = TransistorShanty.Brands.First(b => b.BrandName == "AsusRog");
+    HashSet<Laptop> asusRogLaptop = new HashSet<Laptop>();
+    foreach (Laptop laptop in TransistorShanty.Laptops)
+    {
+        if (laptop.LaptopBrand.BrandName == asusRog.BrandName)
+        {
+            asusRogLaptop.Add(laptop);
+        }
+    }
+    LaptopBrand lenovo = TransistorShanty.Brands.First(b => b.BrandName == "Lenovo");
+    HashSet<Laptop> lenovoLaptop = new HashSet<Laptop>();
+    foreach (Laptop laptop in TransistorShanty.Laptops)
+    {
+        if (laptop.LaptopBrand.BrandName == lenovo.BrandName)
+        {
+            lenovoLaptop.Add(laptop);
+        }
+    }
+    LaptopBrand apple = TransistorShanty.Brands.First(b => b.BrandName == "Apple");
+    HashSet<Laptop> appleLaptop = new HashSet<Laptop>();
+    foreach (Laptop laptop in TransistorShanty.Laptops)
+    {
+        if (laptop.LaptopBrand.BrandName == apple.BrandName)
+        {
+            appleLaptop.Add(laptop);
+        }
+    }
+    return Results.Ok(new
+    {
+        dellLaptop, alienwareLaptop, asusRogLaptop, lenovoLaptop, appleLaptop
+    });
 });
 app.Run();
 static class TransistorShanty

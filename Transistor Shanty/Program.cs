@@ -219,13 +219,13 @@ app.MapGet("/brands", () =>
             alienwareLaptop.Add(laptop);
         }
     }
-    LaptopBrand asusRog = TransistorShanty.Brands.First(b => b.BrandName == "AsusRog");
-    HashSet<Laptop> asusRogLaptop = new HashSet<Laptop>();
+    LaptopBrand asusrog = TransistorShanty.Brands.First(b => b.BrandName == "Asusrog");
+    HashSet<Laptop> asusrogLaptop = new HashSet<Laptop>();
     foreach (Laptop laptop in TransistorShanty.Laptops)
     {
-        if (laptop.LaptopBrand.BrandName == asusRog.BrandName)
+        if (laptop.LaptopBrand.BrandName == asusrog.BrandName)
         {
-            asusRogLaptop.Add(laptop);
+            asusrogLaptop.Add(laptop);
         }
     }
     LaptopBrand lenovo = TransistorShanty.Brands.First(b => b.BrandName == "Lenovo");
@@ -274,8 +274,8 @@ static class TransistorShanty
         Brands.Add(dell);
         LaptopBrand alienware = new LaptopBrand(_pkCount++, "Alienware");
         Brands.Add(alienware);
-        LaptopBrand asusRog = new LaptopBrand(_pkCount++, "AsusRog");
-        Brands.Add(asusRog);
+        LaptopBrand asusrog = new LaptopBrand(_pkCount++, "Asusrog");
+        Brands.Add(asusrog);
         LaptopBrand lenovo = new LaptopBrand(_pkCount++, "Lenovo");
         Brands.Add(lenovo);
         LaptopBrand apple = new LaptopBrand(_pkCount++, "Apple");
@@ -292,10 +292,10 @@ static class TransistorShanty
         CreateLaptop("x14", 1000.00, 2020, 2, alienware, laptopNew);
         CreateLaptop("x15", 800.00, 2018, 1, alienware, laptopRefurbished);
         CreateLaptop("x17", 300.00, 2019, 5, alienware, laptopRental);
-        CreateLaptop("Zephyrus", 300.00, 2019, 5, asusRog, laptopRental);
-        CreateLaptop("Flow", 2000.00, 2023, 1, asusRog, laptopNew);
-        CreateLaptop("Strix", 1500.00, 2023, 0, asusRog, laptopNew);
-        CreateLaptop("Legion", 1600.00, 2022, 0, asusRog, laptopNew);
+        CreateLaptop("Zephyrus", 300.00, 2019, 5, asusrog, laptopRental);
+        CreateLaptop("Flow", 2000.00, 2023, 1, asusrog, laptopNew);
+        CreateLaptop("Strix", 1500.00, 2023, 0, asusrog, laptopNew);
+        CreateLaptop("Legion", 1600.00, 2022, 0, asusrog, laptopNew);
         CreateLaptop("Legion-Pro-5i", 1300.00, 2021, 1, lenovo, laptopRental);
         CreateLaptop("Legion-Slim-5", 3000.00, 2022, 1,lenovo, laptopNew);
         CreateLaptop("Macbook-Pro-14", 4000.00, 2022, 4, apple, laptopRefurbished);

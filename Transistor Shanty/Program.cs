@@ -132,6 +132,23 @@ app.MapPost("/laptops/add", (string model, double price, int year, int quantity,
 });
 app.MapGet("/types", () =>
 {
+    Dictionary<string, HashSet<Laptop>> laptopsByType = new Dictionary<string, HashSet<Laptop>>();
+    foreach (LaptopType type in TransistorShanty.Types)
+    {
+        if (!laptopsByType.ContainsKey(type.Type))
+        {
+            laptopsByType[type.Type] = new HashSet<Laptop>();
+        }
+        foreach (Laptop laptop in TransistorShanty.Laptops)
+        {
+            if (laptop.LaptopType.Type == type.Type)
+            {
+                laptopsByType[type.Type].Add(laptop);
+            }
+        }
+    }
+    return Results.Ok(laptopsByType);
+    /*
     LaptopType laptopTypeNew = TransistorShanty.Types.First(t => t.Type == "New");
     HashSet<Laptop> laptopNew = new HashSet<Laptop>();
     foreach (Laptop laptop in TransistorShanty.Laptops)
@@ -163,9 +180,27 @@ app.MapGet("/types", () =>
     {
         laptopNew, laptopRefurbished, laptopRental
     });
+    */
 });
 app.MapGet("/brands", () =>
 {
+    Dictionary<string, HashSet<Laptop>> laptopsByBrand = new Dictionary<string, HashSet<Laptop>>();
+    foreach (LaptopBrand brand in TransistorShanty.Brands)
+    {
+        if (!laptopsByBrand.ContainsKey(brand.BrandName))
+        {
+            laptopsByBrand[brand.BrandName] = new HashSet<Laptop>();
+        }
+        foreach (Laptop laptop in TransistorShanty.Laptops)
+        {
+            if (laptop.LaptopBrand.BrandName == brand.BrandName)
+            {
+                laptopsByBrand[brand.BrandName].Add(laptop);
+            }
+        }
+    }
+    return Results.Ok(laptopsByBrand);
+    /*
     LaptopBrand dell = TransistorShanty.Brands.First(b => b.BrandName == "Dell");
     HashSet<Laptop> dellLaptop = new HashSet<Laptop>();
     foreach (Laptop laptop in TransistorShanty.Laptops)
@@ -215,6 +250,7 @@ app.MapGet("/brands", () =>
     {
         dellLaptop, alienwareLaptop, asusRogLaptop, lenovoLaptop, appleLaptop
     });
+    */
 });
 app.Run();
 static class TransistorShanty
